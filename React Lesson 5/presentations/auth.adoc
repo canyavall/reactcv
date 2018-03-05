@@ -1,0 +1,84 @@
+include::../../../_settings_deck.adoc[]
+// include::../../../_settings_reveal.adoc[]
+
+// beige, blond, default, moon, night, serif, simple, sky, solarized
+// :revealjs_customtheme: reveal.js/css/theme/serif.css
+
+= Auth
+
+== Auth
+
+* Motivation
+* Auth Steps
+* Login Implementation
+* Session Implementation
+* Logout
+
+== Motivation
+
+**Authentication** is about verifying who you are.
+
+**Authorization** is about giving access depending on who you are.
+
+== Auth Steps
+
+* Login
+
+Sending your data usually email and password to backend in order to verify them.
+
+* Session
+
+After logging in, in every subsequent request, sending *somehow* who you are.
+
+== Login Implementation
+
+Make a POST Request with the Data required by the API.
+
+== Session Implementation
+
+Implement a reducer `currentUser` to store the token.
+
+Use the token for further requests.
+
+.Usage with JWT
+[source,javascript,indent=0]
+----
+export const fetchFeed = () => (dispatch, getState) => {
+  const currentUser = getState().currentUser;
+  const myHeaders = new Headers({
+    Authorization: `Bearer ${currentUser.token}` // this is the recommended header if you are using JWT
+  });
+  const config = {
+    method: 'GET',
+    headers: myHeaders,
+  };
+
+  fetch(`${devUrl}/api/feed`, config)
+  // ...
+}
+----
+
+== Session Implementation
+
+.Saving Session in localStorage
+[source,javascript,indent=0]
+----
+localStorage.setItem('user', JSON.stringify(user));
+----
+
+.Retrieving Session in localStorage
+[source,javascript,indent=0]
+----
+export const fetchLocalUser = () => (dispatch) => {
+  const userStr = localStorage.getItem('user');
+  if (userStr) {
+    const user = JSON.parse(userStr);
+    dispatch(setUser(user)); // dispatching an action to save it to Redux Store
+  }
+}
+----
+
+== Logout
+
+* Reset `currentUser` Redux state to an empty object.
+* Clear localStorage.

@@ -1,0 +1,227 @@
+include::../../../_settings_deck.adoc[]
+// include::../../../_settings_reveal.adoc[]
+
+// beige, blond, default, moon, night, serif, simple, sky, solarized
+// :revealjs_customtheme: reveal.js/css/theme/serif.css
+
+= React
+
+== React
+
+* Single Page App
+* Components
+* JSX
+* Props
+* State
+* Looping
+* Events
+* Lifecycle
+* PropTypes
+
+== Single Page App
+
+* Single Page Load
+* Data
+* Navigation
+* Fetching
+
+== Components
+
+One component - One Folder
+
+.Header Component
+[source,javascript,indent=0]
+----
+class Header extends Component {
+  render() {
+    return (
+      <div className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <h2>Welcome to React</h2>
+      </div>
+    );
+  }
+}
+----
+
+== JSX
+
+.HTML Elements
+[source,javascript,indent=0]
+----
+<h2>Welcome to React</h2>
+----
+
+.React Components
+[source,javascript,indent=0]
+----
+<Header />
+----
+
+== JSX
+
+.More than HTML
+[source,javascript,indent=0]
+----
+<h2>{ title }</h2>
+----
+
+.More than HTML
+[source,javascript,indent=0]
+----
+<h2>{ <JS Expression> }</h2>
+----
+
+== Props
+
+.Passing props
+[source,javascript,indent=0]
+----
+<Header title="Goodbye Angular" />
+----
+
+.Using props
+[source,javascript,indent=0]
+----
+<h2>{ this.props.title }</h2>
+----
+
+== Children Props
+
+.Passing Children
+[source,javascript,indent=0]
+----
+<Header>Goodbye Angular</Header>
+----
+
+.Using Children
+[source,javascript,indent=0]
+----
+render() {
+  return (
+    <div className="App-header">
+      <img src={logo} className="App-logo" alt="logo" />
+      <h2>{ this.props.children }</h2>
+    </div>
+  )
+}
+----
+
+== Children Props
+
+The children could be a:
+
+* String
+* One React Component
+* More than one React Component
+
+== Looping
+
+.Looping
+[source,javascript,indent=0]
+----
+render() {
+  const todos = ['Master JS', 'Learn React', 'Learn Redux'];
+
+  return (
+    <ul>
+      {
+        todos.map((todo, index) => {
+          return <TodoItem key={ index } todo={ todo } />;
+        })
+      }
+    </ul>
+  )
+}
+----
+
+== State
+
+.Setup State
+[source,javascript,indent=0]
+----
+constructor(props) {
+  super(props);
+
+  this.state = {
+    todos: ['Master JS', 'Learn React', 'Learn Redux']
+  };
+}
+----
+
+.Use State
+[source,javascript,indent=0]
+----
+render() {
+  return (
+    <ul>
+      {
+        this.state.todos.map((todo, index) => {
+          return <TodoItem key={ index } todo={ todo } />;
+        })
+      }
+    </ul>
+  )
+}
+----
+
+== State
+
+How to change State.
+
+.Use State
+[source,javascript,indent=0]
+----
+this.setState({
+  todos: ['Master JS', 'Learn Redux']
+});
+----
+
+== Events
+
+React has its own way of listening for events.
+
+It uses special props on the Elements.
+
+[source,javascript,indent=0]
+----
+handleClick = () => {
+  console.log('you clicked the element!');
+}
+
+render() {
+  return <li onClick={ this.handleClick }>{ this.props.todo }</li>;
+}
+----
+
+== Event Object
+
+When the handler is called. It receives something similar to the `event` object you are used to.
+
+However, it is not exactly the same object. It is a `SyntheticEvent` created by React.
+
+You can still use the regular `currentTarget` or `preventDefault` just like in the regular `event` object.
+
+== Lifecycle Methods
+
+* `componentDidMount`
+* `componentWillReceiveProps`
+* `componentDidUpdate`
+* ...
+
+== PropTypes
+
+A way to enforce specific `props` and type of `props`.
+
+[source,javascript,indent=0]
+----
+import PropTypes from 'prop-types';
+
+class TodoItem extends Component {
+  // ...
+}
+
+TodoItem.propTypes = {
+  todo: PropTypes.string
+};
+----

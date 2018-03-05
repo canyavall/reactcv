@@ -1,0 +1,99 @@
+include::../../../_settings_deck.adoc[]
+// include::../../../_settings_reveal.adoc[]
+
+// beige, blond, default, moon, night, serif, simple, sky, solarized
+// :revealjs_customtheme: reveal.js/css/theme/serif.css
+
+= Redux
+
+== Redux
+
+* Motivation
+* Core Concepts
+* Three Principles
+* Redux Cycle
+* Key Concepts
+
+== Motivation
+
+From Redux Docs:
+
+*Our code must manage more state than ever before.*
+
+*Redux attempts to make state mutations predictable.*
+
+== Core Concepts
+
+* State: App’s state is described as a plain object
+* Action: An action is a plain JavaScript object that describes what happened
+* Reducer: To tie state and actions together. Function that takes state and action as arguments, and returns the next state
+
+== Three Principles
+
+* Single Source of Truth
+* State is read only
+* Changes made with pure Functions
+
+== Redux Cycle
+
+image:https://camo.githubusercontent.com/5aba89b6daab934631adffc1f301d17bb273268b/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6d656469612d702e736c69642e65732f75706c6f6164732f3336343831322f696d616765732f323438343535322f415243482d5265647578322d7265616c2e676966[]
+
+== Key Concepts: Store
+
+.Create a store
+[source,javascript,indent=0]
+----
+const todoApp = combineReducers({
+  todos,
+  visibilityFilter
+});
+
+const store = createStore(todoApp);
+----
+
+== Key Concepts: Dispatch
+
+.Dispatch an action
+[source,javascript,indent=0]
+----
+store.dispatch({
+  type: 'ADD_TODO',
+  id: 1,
+  text: 'Go shopping'
+});
+----
+
+== Key Concepts: Action Creator
+
+.Setup State
+[source,javascript,indent=0]
+----
+const addTodo = (id, text) => {
+  return {
+    type: 'ADD_TODO',
+    id, // remember ES6 object short notation
+    text,
+  };
+}
+----
+
+== Key Concepts: Reducer
+
+.Setup State
+[source,javascript,indent=0]
+----
+function todoApp(state = initialState, action) {
+  switch (action.type) {
+    case ADD_TODO:
+      return [
+        ...state,
+        {
+          text: action.text,
+          completed: false
+        }
+      ]
+    default:
+      return state
+  }
+}
+----

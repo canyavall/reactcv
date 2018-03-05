@@ -1,0 +1,93 @@
+include::../../../_settings_deck.adoc[]
+// include::../../../_settings_reveal.adoc[]
+
+// beige, blond, default, moon, night, serif, simple, sky, solarized
+// :revealjs_customtheme: reveal.js/css/theme/serif.css
+
+= Functional Programming
+
+== Functional Programming
+
+* Intro to functional Programming
+* High Order Functions
+* Currying
+
+== Intro to Functional Programming
+
+Functional Programming is a paradigm.
+
+Object Oriented Programming is another paradigm based on objects.
+
+The main difference is that in Functional Programming there is no shared state nor mutable data.
+
+== Functional Programming
+
+image:http://imgs.xkcd.com/comics/sad.png[]
+
+== Intro to Functional Programming
+
+Vocabulary:
+
+- Side effects
+- Pure functions
+- State
+- Immutability
+- Function Composition
+- High Order Functions
+- Currying
+
+== High Order Functions
+
+Function that uses other functions.
+
+`forEach`, `map` and `bind` are all examples of high order functions.
+
+.Example
+[source,javascript,indent=0]
+----
+var createMultiplier = function(num) {
+  return function(num2) {
+    return num * num2;
+  }
+}
+
+var multiplyByFive = createMultiplier(5);
+
+multiplyByFive(4); // 20;
+----
+
+== Currying
+
+Partial application
+
+.Previous Example
+[source,javascript,indent=0]
+----
+var createMultiplier = function(num) {
+  return function(num2) {
+    return num * num2;
+  }
+}
+
+var multiplyByFive = createMultiplier(5);
+
+multiplyByFive(4); // 20;
+----
+
+== Currying
+
+Currying is similar to partial application. However, we don't know how the parameters will be split.
+
+.Previous Example
+[source,javascript,indent=0]
+----
+var multiplyFour = function (num1, num2, num3, num4) {
+  return num1 * num2 * num3 * num4;
+}
+
+var curriedMultiplier = curry(multiplyFour);
+
+var partialMult = curriedMultiplier(3);
+var anotherPartial = partialMult(5, 6)
+anotherPartial(2); // 3 * 5 * 6 * 2
+----

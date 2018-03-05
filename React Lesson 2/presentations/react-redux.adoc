@@ -1,0 +1,72 @@
+include::../../../_settings_deck.adoc[]
+// include::../../../_settings_reveal.adoc[]
+
+// beige, blond, default, moon, night, serif, simple, sky, solarized
+// :revealjs_customtheme: reveal.js/css/theme/serif.css
+
+= React and Redux
+
+== React and Redux
+
+* Motivation
+* Provider
+* Connect
+
+== Motivation
+
+We want to connect our React Components to the Redux Store:
+
+* Retrieve data from Redux State
+* Dispatch actions from React Components
+
+`react-redux` is an npm package that provides us with the tools to make all that possible.
+
+== Provider
+
+.Use Provider
+[source,javascript,indent=0]
+----
+import { Provider } from 'react-redux';
+
+//...
+
+ReactDOM.render(
+  <Provider store={ store }>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+);
+----
+
+*It doesn't need to be in `ReactDOM.render`.*
+
+*The important is that it is wrapping the "Most Parent Component".*
+
+== Connect
+
+.Use Connect
+[source,javascript,indent=0]
+----
+import { connect } from 'react-redux';
+// ...
+class App extends Component {
+  // ...
+}
+
+export default connect()(App);
+----
+
+== Connect
+
+.Use MapStateToProps
+[source,javascript,indent=0]
+----
+// ...
+const mapStateToProps = (state) => {
+  return {
+    todos: state.todos
+  }
+};
+
+export default connect(mapStateToProps)(App);
+----

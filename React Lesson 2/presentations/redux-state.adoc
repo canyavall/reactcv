@@ -1,0 +1,162 @@
+include::../../../_settings_deck.adoc[]
+// include::../../../_settings_reveal.adoc[]
+
+// beige, blond, default, moon, night, serif, simple, sky, solarized
+// :revealjs_customtheme: reveal.js/css/theme/serif.css
+
+= Redux State
+
+== Redux State
+
+* Todo App
+* Trivial App
+* Blackjack App
+* Twitter
+* Youtube
+
+== Todo App
+
+**What state?**
+
+== Todo App
+
+.Todo App State
+[source,javascript,indent=0]
+----
+{
+  todos: {
+    1: {
+      id: 1,
+      content: 'Learn JS',
+      completed: true,
+    },
+    // ...
+  },
+  filter: 'completed',
+}
+----
+
+== Trivial App
+
+**What state?**
+
+== Trivial App
+
+.Trivial App State
+[source,javascript,indent=0]
+----
+{
+  questions: {
+    1: {
+      id: 1,
+      order: 2,
+      question: 'What is scope?',
+      wrongAnswers: ['...', '...' ],
+      correctAnswer: '...'
+    },
+    // ...
+  },
+  users: {
+    3: {
+      id: 3,
+      name: 'Bogdan',
+      results: []
+    },
+    // ...
+  }
+}
+----
+
+== Blackjack App
+
+**What state?**
+
+== Blackjack App
+
+.Blackjack App State
+[source,javascript,indent=0]
+----
+{
+  players: {
+    1: {
+      id: 1,
+      cards: [{ suit: 'Heart', value: 'A' }, /* ... */ ]
+    },
+    // ...
+  },
+  dealer: {
+    cards: [{ suit: 'Spade', value: '10' }, /* ... */ ]
+  },
+  turn: {
+    isDealer: false,
+    player: 2
+  }
+}
+----
+
+== Twitter App
+
+**What state?**
+
+== Twitter
+
+.Twitter State
+[source,javascript,indent=0]
+----
+{
+  tweetts: {
+    1: {
+      id: 1,
+      content: 'Hello tuit',
+      user: 3
+    },
+    // ...
+  },
+  users: {
+    3: {
+      id: 3,
+      username: 'Laurent',
+      avatar: 'boss.jpg',
+      likes: [/*...*/],
+      follows: [/*...*/],
+    },
+    // ...
+  }
+}
+----
+
+== Youtube
+
+.Youtube State
+[source,javascript,indent=0]
+----
+{
+  videos: {
+    1: {
+      id: 1,
+      videlUrl: '...',
+      user: 3,
+      comments: [3, 9, 1, ...]
+    },
+    // ...
+  },
+  users: {
+    1: {
+      id: 1,
+      username: 'Laurent',
+      avatar: 'boss.jpg',
+      likes: [/*...*/],
+      follows: [/*...*/],
+    },
+    // ...
+  },
+  comments: {
+    1: {
+      id: 1,
+      user: 5,
+      content: 'This was nice!'
+    },
+    // ...
+  }
+}
+----
